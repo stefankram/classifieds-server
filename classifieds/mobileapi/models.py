@@ -21,13 +21,17 @@ class User(models.Model):
 class Buyer(models.Model):
     user_id = models.ForeignKey(User)
     email = models.CharField()
+    phone = models.CharField()
     address = models.ForeignKey(Address)
     billing = models.ForeignKey(Billing)
+    rating = models.ForeignKey(Rating)
 
 
 class Seller(models.Model):
     user_id = models.ForeignKey(User)
+    phone = models.CharField()
     company_id = models.ForeignKey(Company)
+    rating = models.ForeignKey(Rating)
 
 
 class Password(models.Model):
@@ -50,31 +54,44 @@ class Billing(models.Model):
     cvv = models.CharField()
 
 
-class Product(models.Model):
+class Rating(models.Model):
+    score = models.FloatField()
+    review = models.CharField()
+
+
+class Item(models.Model):
     created_at = models.DateTimeField()
     name = models.CharField()
+    type = models.CharField()
 
 
-class ProductRequest(models.Model):
+class ItemRequest(models.Model):
+    created_at = models.DateTimeField()
     buyer_id = models.ForeignKey(Buyer)
-    product_id = models.ForeignKey(Product)
+    item_id = models.ForeignKey(Item)
     description = models.CharField()
+    purchase_date = models.DateTimeField()
 
 
-class ProductResponse(models.Model):
+class ItemResponse(models.Model):
     seller_id = models.ForeignKey(Seller)
-    product_id = models.ForeignKey(Product)
+    item_id = models.ForeignKey(Item)
     message = models.CharField()
     price = models.FloatField()
-    
 
 
-class Service(models.Model):
+class Message(models.Model):
     created_at = models.DateTimeField()
-    name = models.CharField()
+    _from = models.ForeignKey(User, name='from')
+    to = models.ForeignKey(User)
+    message = models.CharField()
 
 
-class ServiceRequest(models.Model):
-    buyer_id = models.ForeignKey(Buyer)
-    service_id = models.ForeignKey(Service)
+class Order(models.Model):
+    created_at = models.DateTimeField()
+    item = models.ForeignKey(Item)
+    buyer = models.ForeignKey(Buyer)
+    seller = models.ForeignKey(Seller)
+    purchase_date = models.DateTimeField()
+    price = models.FloatField()
     description = models.CharField()
