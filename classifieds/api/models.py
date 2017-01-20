@@ -1,27 +1,62 @@
 from django.db import models
 
 
+#
+# Model: Company
+#
+# Description: A company that provides sellers
+#
 class Company(models.Model):
-    created_at = models.DateTimeField()
-    name = models.CharField()
-    description = models.CharField()
-    email = models.CharField()
-    password = models.ForeignKey(Password)
-    address = models.ForeignKey(Address)
-    billing = models.ForeignKey(Billing)
-    header_pic = models.CharField()
+    created_at = models.DateTimeField(
+        db_column='created_at',
+        auto_now_add=True,
+        editable=False
+    )
+
+    name = models.CharField(
+        db_column='name',
+        max_length=192
+    )
+
+    description = models.TextField(
+        db_column='description'
+    )
+
+    email = models.CharField(
+        db_column='email',
+        unique=True
+    )
+
+    header_pic = models.CharField(
+        db_column='header_pic',
+        max_length=2048
+    )
+
+    password_id = models.ForeignKey(
+        Password,
+        db_column='password_id',
+        on_delete=models.CASCADE
+    )
+
+    address_id = models.ForeignKey(
+        Address,
+        db_column='address_id',
+        on_delete=models.CASCADE
+    )
+
+    billing_id = models.ForeignKey(Billing, on_delete=models.CASCADE)
 
 
 class User(models.Model):
-    created_at = models.DateTimeField()
-    name = models.CharField()
-    username = models.CharField()
-    password = models.ForeignKey(Password)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    name = models.CharField(max_length=192)
+    username = models.CharField(unique=True)
+    password = models.ForeignKey(Password, on_delete=models.CASCADE)
 
 
 class Buyer(models.Model):
     user_id = models.ForeignKey(User)
-    email = models.CharField()
+    email = models.CharField(unique=True)
     phone = models.CharField()
     address = models.ForeignKey(Address)
     billing = models.ForeignKey(Billing)
@@ -64,9 +99,16 @@ class Rating(models.Model):
 
 
 class Item(models.Model):
+    TYPE = (
+        ('PR', 'Product'),
+        ('SR', 'Service'),
+    )
+
     created_at = models.DateTimeField()
-    name = models.CharField()
-    type = models.CharField()
+    name = models.CharField(unique=True)
+    type = models.CharField(
+        max_length=2,
+        choices=TYPE)
     available = models.BooleanField()
 
 
