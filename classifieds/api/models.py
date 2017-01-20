@@ -9,6 +9,7 @@ class Company(models.Model):
     password = models.ForeignKey(Password)
     address = models.ForeignKey(Address)
     billing = models.ForeignKey(Billing)
+    header_pic = models.CharField()
 
 
 class User(models.Model):
@@ -25,13 +26,16 @@ class Buyer(models.Model):
     address = models.ForeignKey(Address)
     billing = models.ForeignKey(Billing)
     rating = models.ForeignKey(Rating)
+    profile_pic = models.CharField()
 
 
 class Seller(models.Model):
     user_id = models.ForeignKey(User)
     phone = models.CharField()
+    address = models.ForeignKey(Address)
     company_id = models.ForeignKey(Company)
     rating = models.ForeignKey(Rating)
+    profile_pic = models.CharField()
 
 
 class Password(models.Model):
@@ -63,6 +67,7 @@ class Item(models.Model):
     created_at = models.DateTimeField()
     name = models.CharField()
     type = models.CharField()
+    available = models.BooleanField()
 
 
 class ItemRequest(models.Model):
@@ -95,3 +100,4 @@ class Order(models.Model):
     purchase_date = models.DateTimeField()
     price = models.FloatField()
     description = models.CharField()
+    completed = models.BooleanField()
