@@ -1,4 +1,7 @@
 from django.db import models
+from .buyer import Buyer
+from .item import Item
+from .seller import Seller
 
 
 class Order(models.Model):

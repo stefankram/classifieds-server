@@ -1,4 +1,6 @@
 from django.db import models
+from .item import Item
+from .seller import Seller
 
 
 class ItemsOffered(models.Model):

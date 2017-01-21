@@ -1,4 +1,5 @@
 from django.db import models
+from .password import Password
 
 
 class User(models.Model):

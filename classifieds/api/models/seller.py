@@ -1,4 +1,7 @@
 from django.db import models
+from .address import Address
+from .billing import Billing
+from .user import User
 
 
 class Seller(models.Model):
