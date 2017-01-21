@@ -8,6 +8,12 @@ class Billing(models.Model):
     Holds the billing information of a user
 
     """
+    TYPE = (
+        ('VI', 'Visa'),
+        ('MA', 'MasterCard'),
+        ('AM', 'American Express'),
+    )
+
     cvv = models.CharField(
         db_column='cvv',
         max_length=4)
@@ -22,3 +28,8 @@ class Billing(models.Model):
     number = models.CharField(
         db_column='number',
         max_length=19)
+
+    type = models.CharField(
+        choices=TYPE,
+        db_column='type',
+        max_length=2)
