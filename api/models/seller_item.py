@@ -14,17 +14,17 @@ class SellerItemModel(models.Model):
 
     Instance Variables
     ------------------
-    seller_id: models.ForeignKey
-        The seller
     item_id: models.ForeignKey
         The item
+    seller_id: models.ForeignKey
+        The seller
     """
-    seller_id = models.ForeignKey(
-        db_column='seller_id',
-        on_delete=models.CASCADE,
-        to=SellerModel)
-
     item_id = models.ForeignKey(
         db_column='item_id',
         on_delete=models.CASCADE,
         to=ItemModel)
+
+    seller_id = models.ForeignKey(
+        db_column='seller_id',
+        on_delete=models.CASCADE,
+        to=SellerModel)

@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
-from api.models import MessageModel
+from api.models import RatingModel
 
 
-class MessageSerializer(serializers.ModelSerializer):
+class RatingSerializer(serializers.ModelSerializer):
     """
-    Message Serializer
+    Rating Serializer
 
     Description
     -----------
-    Serializes the message model
+    Serializes the rating model
     """
     buyer_id = serializers.PrimaryKeyRelatedField(
         many=False,
@@ -20,12 +20,13 @@ class MessageSerializer(serializers.ModelSerializer):
         read_only=True)
 
     class Meta:
-        model = MessageModel
+        model = RatingModel
         fields = [
             'id',
             'buyer_id',
             'created_at',
-            'message',
+            'review',
             'recipient',
+            'score',
             'seller_id'
         ]

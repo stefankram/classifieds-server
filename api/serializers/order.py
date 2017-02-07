@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
-from api.models import MessageModel
+from api.models import OrderModel
 
 
-class MessageSerializer(serializers.ModelSerializer):
+class OrderSerializer(serializers.ModelSerializer):
     """
-    Message Serializer
+    Order Serializer
 
     Description
     -----------
-    Serializes the message model
+    Serializes the order model
     """
     buyer_id = serializers.PrimaryKeyRelatedField(
         many=False,
@@ -20,12 +20,15 @@ class MessageSerializer(serializers.ModelSerializer):
         read_only=True)
 
     class Meta:
-        model = MessageModel
+        model = OrderModel
         fields = [
             'id',
             'buyer_id',
+            'completed',
             'created_at',
-            'message',
-            'recipient',
+            'description',
+            'prepaid',
+            'price',
+            'purchase_date',
             'seller_id'
         ]
