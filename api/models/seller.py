@@ -40,17 +40,15 @@ class SellerModel(models.Model):
     profile_pic: string
         The seller's profile picture
     """
-    address_id = models.ForeignKey(
+    address_id = models.OneToOneField(
         db_column='address_id',
         on_delete=models.PROTECT,
-        to=AddressModel,
-        unique=True)
+        to=AddressModel)
 
-    billing_id = models.ForeignKey(
+    billing_id = models.OneToOneField(
         db_column='billing_id',
         on_delete=models.PROTECT,
-        to=BillingModel,
-        unique=True)
+        to=BillingModel)
 
     company_id = models.ForeignKey(
         db_column='company_id',
@@ -79,11 +77,10 @@ class SellerModel(models.Model):
         db_column='last_name',
         max_length=192)
 
-    password_id = models.ForeignKey(
+    password_id = models.OneToOneField(
         db_column='password_id',
         on_delete=models.PROTECT,
-        to=PasswordModel,
-        unique=True)
+        to=PasswordModel)
 
     phone = models.CharField(
         db_column='phone',
