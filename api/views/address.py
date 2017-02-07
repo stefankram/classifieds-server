@@ -12,25 +12,83 @@ class AddressView(APIView):
 
     Description
     -----------
-    Display a specific address
+    Display all addresses or create one
     """
 
-    def get_object(self, pk):
+    def get(self, req):
+        """
+        Get all addresses
+
+        :param req: The request object
+        :return: JSON array of address objects
+        :raise DoesNotExist if no addresses exist
+        """
         try:
-            return AddressModel.objects.get(pk=pk)
+            addresses = AddressModel.objects.all()
+            serializer = AddressSerializer(addresses, many=True)
+
+            return Response(serializer.data)
+
         except AddressModel.DoesNotExist:
             raise Http404
 
-    def get(self, req, pk):
-        return Response(AddressSerializer(self.get_object(pk)).data)
+    def put(self, req):
+        """
+        Create an address
 
-    def put(self, req, pk):
+        :param req: The request object
+        :return: The newly created address
+        """
         serializer = AddressSerializer(data=req.data)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class AddressDetailView(APIView):
+    """
+    Address Detail View
+
+    Description
+    -----------
+    Display a detailed address
+    """
+
+    def get(self, req, pk):
+        """
+        Get a specific address
+
+        :param req: The request object
+        :param pk: The address's primary key
+        :return: The address object
+        :raise DoesNotExist if no address exists for the primary key
+        """
+        try:
+            address = AddressModel.objects.get(pk=pk)
+            serializer = AddressSerializer(address)
+
+            return Response(serializer.data)
+
+        except AddressModel.DoesNotExist:
+            raise Http404
+
     def delete(self, req, pk):
-        self.get_object(pk).delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        """
+        Delete a specific address
+
+        :param req: The request object
+        :param pk: The address's primary key
+        :return: The address object
+        :raise DoesNotExist if no address exists for the primary key
+        """
+        try:
+            address = AddressModel.objects.get(pk=pk)
+            address.delete()
+
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        except AddressModel.DoesNotExist:
+            raise Http404
