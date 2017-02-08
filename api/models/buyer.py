@@ -1,3 +1,4 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.validators import MinLengthValidator
 from django.db import models
 
@@ -6,7 +7,7 @@ from .billing import BillingModel
 from .address import AddressModel
 
 
-class BuyerModel(models.Model):
+class BuyerModel(AbstractBaseUser):
     """
     Buyer Model
 
@@ -77,6 +78,16 @@ class BuyerModel(models.Model):
         db_column='profile_pic',
         max_length=1024,
         null=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
+    is_active = True
+
+    def get_full_name(self):
+        return self.first_name + self.last_name
+
+    def get_short_name(self):
+        return self.first_name
 
     def delete(self, using=None, keep_parents=False):
         if self.address_id:
