@@ -18,6 +18,10 @@ from .item import CreateItemView
 from .item import ListItemView
 from .item import RetrieveUpdateItemView
 
+from .message import CreateMessageView
+from .message import ListMessageView
+from .message import RetrieveUpdateMessageView
+
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView
