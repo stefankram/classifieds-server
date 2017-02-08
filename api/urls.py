@@ -6,14 +6,17 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from api.views import CreateAddressView
 from api.views import CreateBillingView
 from api.views import CreateBuyerView
+from api.views import CreateCompanyView
 from api.views import CreateUserView
 from api.views import ListAddressView
 from api.views import ListBillingView
 from api.views import ListBuyerView
+from api.views import ListCompanyView
 from api.views import ListUserView
 from api.views import RetrieveUpdateAddressView
 from api.views import RetrieveUpdateBillingView
 from api.views import RetrieveUpdateBuyerView
+from api.views import RetrieveUpdateCompanyView
 from api.views import RetrieveUpdateUserView
 
 urlpatterns = [
@@ -31,6 +34,11 @@ urlpatterns = [
     url(r'^buyers/$', ListBuyerView.as_view()),
     url(r'^buyer/create/$', CreateBuyerView.as_view()),
     url(r'^buyer/(?P<pk>[0-9]+)/$', RetrieveUpdateBuyerView.as_view()),
+
+    # Company urls
+    url(r'companies/$', ListCompanyView.as_view()),
+    url(r'company/create/$', CreateCompanyView.as_view()),
+    url(r'company/(?P<pk>[0-9]+)/$', RetrieveUpdateCompanyView.as_view()),
 
     # Token authentication urls
     url(r'^token/obtain/$', obtain_jwt_token),

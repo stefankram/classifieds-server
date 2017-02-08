@@ -10,6 +10,10 @@ from .buyer import CreateBuyerView
 from .buyer import ListBuyerView
 from .buyer import RetrieveUpdateBuyerView
 
+from .company import CreateCompanyView
+from .company import ListCompanyView
+from .company import RetrieveUpdateCompanyView
+
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView
