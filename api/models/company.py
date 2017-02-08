@@ -1,7 +1,7 @@
+from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from .password import PasswordModel
 from .billing import BillingModel
 from .address import AddressModel
 
@@ -30,10 +30,12 @@ class CompanyModel(models.Model):
         The company's logo
     name: string
         The company's name
-    password_id: models.ForeignKey
-        The password of this account
     phone: string
         The company's phone number
+    updated_at: datetime
+        The last time the company's data was updated
+    user_id: models.ForeignKey
+        A link to the user account of the company
     """
     address_id = models.OneToOneField(
         db_column='address_id',
@@ -66,12 +68,17 @@ class CompanyModel(models.Model):
         db_column='name',
         max_length=192)
 
-    password_id = models.OneToOneField(
-        db_column='password_id',
-        on_delete=models.PROTECT,
-        to=PasswordModel)
-
     phone = models.CharField(
         db_column='phone',
         max_length=15,
         validators=[MinLengthValidator(10)])
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        db_column='updated_at',
+        editable=False)
+
+    user_id = models.OneToOneField(
+        db_column='user_id',
+        on_delete=models.CASCADE,
+        to=User)

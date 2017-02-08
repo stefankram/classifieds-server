@@ -19,10 +19,6 @@ class CompanySerializer(serializers.ModelSerializer):
         many=False,
         read_only=True)
 
-    password_id = serializers.PrimaryKeyRelatedField(
-        many=False,
-        read_only=True)
-
     class Meta:
         model = CompanyModel
         fields = [

@@ -1,32 +1,26 @@
+from rest_framework.generics import CreateAPIView
+from rest_framework.generics import ListAPIView
+from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 from api.models import BillingModel
+from api.pagination import Pagination
 from api.serializers import BillingSerializer
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
 
 
-class BillingView(APIView):
-    """
-    Billing View
+class CreateBillingView(CreateAPIView):
+    authentication_classes = (JSONWebTokenAuthentication,)
+    serializer_class = BillingSerializer
 
-    Description
-    -----------
-    Create a billing object
-    """
 
-    def put(self, req):
-        """
-        Create a billing object
+class ListBillingView(ListAPIView):
+    authentication_classes = (JSONWebTokenAuthentication,)
+    pagination_class = Pagination
+    queryset = BillingModel.objects.all()
+    serializer_class = BillingSerializer
 
-        :param req: The request object
-        :return: The newly created billing object
-        """
-        serializer = BillingSerializer(data=req.data)
 
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+class RetrieveUpdateBillingView(RetrieveUpdateAPIView):
+    authentication_classes = (JSONWebTokenAuthentication,)
+    queryset = BillingModel.objects.all()
+    serializer_class = BillingSerializer

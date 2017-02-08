@@ -1,13 +1,12 @@
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from .password import PasswordModel
 from .billing import BillingModel
 from .address import AddressModel
 
 
-class BuyerModel(AbstractBaseUser):
+class BuyerModel(models.Model):
     """
     Buyer Model
 
@@ -29,12 +28,14 @@ class BuyerModel(AbstractBaseUser):
         The buyer's first name
     last_name: string
         The buyer's last name
-    password_id: models.ForeignKey
-        The password of the buyer
     phone: string
         The buyer's phone number
     profile_pic: string
         The buyer's profile picture
+    updated_at: datetime
+        The last time the buyer's data was updated
+    user_id: models.ForeignKey
+        A link to the user account of the buyer
     """
     address_id = models.OneToOneField(
         db_column='address_id',
@@ -64,11 +65,6 @@ class BuyerModel(AbstractBaseUser):
         db_column='last_name',
         max_length=192)
 
-    password_id = models.OneToOneField(
-        db_column='password_id',
-        on_delete=models.PROTECT,
-        to=PasswordModel)
-
     phone = models.CharField(
         db_column='phone',
         max_length=15,
@@ -79,15 +75,15 @@ class BuyerModel(AbstractBaseUser):
         max_length=1024,
         null=True)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
-    is_active = True
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        db_column='updated_at',
+        editable=False)
 
-    def get_full_name(self):
-        return self.first_name + self.last_name
-
-    def get_short_name(self):
-        return self.first_name
+    user_id = models.OneToOneField(
+        db_column='user_id',
+        on_delete=models.CASCADE,
+        to=User)
 
     def delete(self, using=None, keep_parents=False):
         if self.address_id:
@@ -95,6 +91,3 @@ class BuyerModel(AbstractBaseUser):
 
         if self.billing_id:
             self.billing_id.delete()
-
-        if self.password_id:
-            self.password_id.delete()

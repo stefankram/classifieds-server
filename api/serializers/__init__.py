@@ -5,7 +5,6 @@ from .company import CompanySerializer
 from .item import ItemSerializer
 from .message import MessageSerializer
 from .order import OrderSerializer
-from .password import PasswordSerializer
 from .rating import RatingSerializer
 from .seller import SellerSerializer
 from .seller_item import SellerItemSerializer

@@ -1,8 +1,8 @@
+from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from .company import CompanyModel
-from .password import PasswordModel
 from .billing import BillingModel
 from .address import AddressModel
 
@@ -33,12 +33,14 @@ class SellerModel(models.Model):
         The seller's first name
     last_name: string
         The seller's last name
-    password_id: models.ForeignKey
-        The password of the seller
     phone: string
         The seller's phone number
     profile_pic: string
         The seller's profile picture
+    updated_at: datetime
+        The last time the buyer's data was updated
+    user_id: models.ForeignKey
+        A link to the user account of the buyer
     """
     address_id = models.OneToOneField(
         db_column='address_id',
@@ -77,11 +79,6 @@ class SellerModel(models.Model):
         db_column='last_name',
         max_length=192)
 
-    password_id = models.OneToOneField(
-        db_column='password_id',
-        on_delete=models.PROTECT,
-        to=PasswordModel)
-
     phone = models.CharField(
         db_column='phone',
         max_length=15,
@@ -91,12 +88,19 @@ class SellerModel(models.Model):
         db_column='profile_pic',
         max_length=1024)
 
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        db_column='updated_at',
+        editable=False)
+
+    user_id = models.OneToOneField(
+        db_column='user_id',
+        on_delete=models.CASCADE,
+        to=User)
+
     def delete(self, using=None, keep_parents=False):
         if self.address_id:
             self.address_id.delete()
 
         if self.billing_id:
             self.billing_id.delete()
-
-        if self.password_id:
-            self.password_id.delete()
