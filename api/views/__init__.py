@@ -34,6 +34,10 @@ from .seller import CreateSellerView
 from .seller import ListSellerView
 from .seller import RetrieveUpdateSellerView
 
+from .seller_item import CreateSellerItemView
+from .seller_item import ListSellerItemView
+from .seller_item import RetrieveUpdateSellerItemView
+
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView

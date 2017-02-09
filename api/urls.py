@@ -11,6 +11,7 @@ from api.views import CreateItemView
 from api.views import CreateMessageView
 from api.views import CreateOrderView
 from api.views import CreateRatingView
+from api.views import CreateSellerItemView
 from api.views import CreateSellerView
 from api.views import CreateUserView
 from api.views import ListAddressView
@@ -21,6 +22,7 @@ from api.views import ListItemView
 from api.views import ListMessageView
 from api.views import ListOrderView
 from api.views import ListRatingView
+from api.views import ListSellerItemView
 from api.views import ListSellerView
 from api.views import ListUserView
 from api.views import RetrieveUpdateAddressView
@@ -31,6 +33,7 @@ from api.views import RetrieveUpdateItemView
 from api.views import RetrieveUpdateMessageView
 from api.views import RetrieveUpdateOrderView
 from api.views import RetrieveUpdateRatingView
+from api.views import RetrieveUpdateSellerItemView
 from api.views import RetrieveUpdateSellerView
 from api.views import RetrieveUpdateUserView
 
@@ -70,6 +73,10 @@ urlpatterns = [
     url(r'^sellers/$', ListSellerView.as_view()),
     url(r'^seller/create/$', CreateSellerView.as_view()),
     url(r'^seller/(?P<pk>[0-9]+)/$', RetrieveUpdateSellerView.as_view()),
+
+    url(r'^seller-items/$', ListSellerItemView.as_view()),
+    url(r'^seller-item/create/$', CreateSellerItemView.as_view()),
+    url(r'^seller-item/(?P<pk>[0-9]+)/$', RetrieveUpdateSellerItemView.as_view()),
 
     url(r'^token/obtain/$', obtain_jwt_token),
     url(r'^token/refresh/$', refresh_jwt_token),
