@@ -30,6 +30,10 @@ from .rating import CreateRatingView
 from .rating import ListRatingView
 from .rating import RetrieveUpdateRatingView
 
+from .seller import CreateSellerView
+from .seller import ListSellerView
+from .seller import RetrieveUpdateSellerView
+
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView
