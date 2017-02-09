@@ -9,8 +9,8 @@ from api.serializers.user import UserSerializer
 
 
 class CreateUserView(CreateAPIView):
-    def perform_create(self, serializer):
-        User.objects.create_user()
+    authentication_classes = (JSONWebTokenAuthentication,)
+    serializer_class = UserSerializer
 
 
 class ListUserView(ListAPIView):
