@@ -22,6 +22,10 @@ from .message import CreateMessageView
 from .message import ListMessageView
 from .message import RetrieveUpdateMessageView
 
+from .order import CreateOrderView
+from .order import ListOrderView
+from .order import RetrieveUpdateOrderView
+
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView
