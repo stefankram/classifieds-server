@@ -10,6 +10,7 @@ from api.views import CreateCompanyView
 from api.views import CreateItemView
 from api.views import CreateMessageView
 from api.views import CreateOrderView
+from api.views import CreateRatingView
 from api.views import CreateUserView
 from api.views import ListAddressView
 from api.views import ListBillingView
@@ -18,6 +19,7 @@ from api.views import ListCompanyView
 from api.views import ListItemView
 from api.views import ListMessageView
 from api.views import ListOrderView
+from api.views import ListRatingView
 from api.views import ListUserView
 from api.views import RetrieveUpdateAddressView
 from api.views import RetrieveUpdateBillingView
@@ -26,6 +28,7 @@ from api.views import RetrieveUpdateCompanyView
 from api.views import RetrieveUpdateItemView
 from api.views import RetrieveUpdateMessageView
 from api.views import RetrieveUpdateOrderView
+from api.views import RetrieveUpdateRatingView
 from api.views import RetrieveUpdateUserView
 
 urlpatterns = [
@@ -63,6 +66,11 @@ urlpatterns = [
     url(r'orders/$', ListOrderView.as_view()),
     url(r'order/create/$', CreateOrderView.as_view()),
     url(r'order/(?P<pk>[0-9]+)/$', RetrieveUpdateOrderView.as_view()),
+
+    # Rating urls
+    url(r'ratings/$', ListRatingView.as_view()),
+    url(r'rating/create/$', CreateRatingView.as_view()),
+    url(r'rating/(?P<pk>[0-9]+)/$', RetrieveUpdateRatingView.as_view()),
 
     # Token authentication urls
     url(r'^token/obtain/$', obtain_jwt_token),

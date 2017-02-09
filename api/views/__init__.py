@@ -26,6 +26,10 @@ from .order import CreateOrderView
 from .order import ListOrderView
 from .order import RetrieveUpdateOrderView
 
+from .rating import CreateRatingView
+from .rating import ListRatingView
+from .rating import RetrieveUpdateRatingView
+
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView
