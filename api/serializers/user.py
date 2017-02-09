@@ -17,7 +17,9 @@ class UserSerializer(serializers.ModelSerializer):
             'id',
             'date_joined',
             'email',
+            'first_name',
             'is_active',
+            'last_name',
             'password',
             'username'
         ]
@@ -26,4 +28,6 @@ class UserSerializer(serializers.ModelSerializer):
         return User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
-            password=validated_data['password'])
+            password=validated_data['password'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name'])
