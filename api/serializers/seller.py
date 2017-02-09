@@ -30,12 +30,7 @@ class SellerSerializer(serializers.ModelSerializer):
             'address_id',
             'billing_id',
             'company_id',
-            'created_at',
             'description',
-            'email',
-            'first_name',
-            'last_name',
-            'password_id',
             'phone',
             'profile_pic'
         ]

@@ -25,11 +25,7 @@ class CompanySerializer(serializers.ModelSerializer):
             'id',
             'address_id',
             'billing_id',
-            'created_at',
             'description',
-            'email',
             'logo_pic',
-            'name',
-            'password_id',
             'phone'
         ]

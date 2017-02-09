@@ -29,11 +29,6 @@ class BuyerSerializer(serializers.ModelSerializer):
             'id',
             'address_id',
             'billing_id',
-            'created_at',
-            'email',
-            'first_name',
-            'last_name',
-            'password_id',
             'phone',
             'profile_pic'
         ]

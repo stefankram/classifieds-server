@@ -18,6 +18,10 @@ from .item import CreateItemView
 from .item import ListItemView
 from .item import RetrieveUpdateItemView
 
+from .location import CreateLocationView
+from .location import ListLocationView
+from .location import RetrieveUpdateLocationView
+
 from .message import CreateMessageView
 from .message import ListMessageView
 from .message import RetrieveUpdateMessageView
