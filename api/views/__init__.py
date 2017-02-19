@@ -34,6 +34,10 @@ from .rating import CreateRatingView
 from .rating import ListRatingView
 from .rating import RetrieveUpdateRatingView
 
+from .search import CreateSearchView
+from .search import ListSearchView
+from .search import RetrieveUpdateSearchView
+
 from .seller import CreateSellerView
 from .seller import ListSellerView
 from .seller import RetrieveUpdateSellerView

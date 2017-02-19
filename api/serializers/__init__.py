@@ -7,5 +7,6 @@ from .location import LocationSerializer
 from .message import MessageSerializer
 from .order import OrderSerializer
 from .rating import RatingSerializer
+from .search import SearchSerializer
 from .seller import SellerSerializer
 from .seller_item import SellerItemSerializer

@@ -49,7 +49,7 @@ class RatingModel(models.Model):
         editable=False)
 
     review = models.TextField(
-        db_column='message')
+        db_column='review')
 
     recipient = models.CharField(
         choices=RECIPIENTS,

@@ -39,6 +39,9 @@ from api.views import RetrieveUpdateRatingView
 from api.views import RetrieveUpdateSellerItemView
 from api.views import RetrieveUpdateSellerView
 from api.views import RetrieveUpdateUserView
+from api.views import ListSearchView
+from api.views import CreateSearchView
+from api.views import RetrieveUpdateSearchView
 
 urlpatterns = [
     url(r'^addresses/$', ListAddressView.as_view()),
@@ -77,13 +80,18 @@ urlpatterns = [
     url(r'^rating/create/$', CreateRatingView.as_view()),
     url(r'^rating/(?P<pk>[0-9]+)/$', RetrieveUpdateRatingView.as_view()),
 
+    url(r'^search/$', ListSearchView.as_view()),
+    url(r'^search/create/$', CreateSearchView.as_view()),
+    url(r'^search/(?P<pk>[0-9]+)/$', RetrieveUpdateSearchView.as_view()),
+
     url(r'^sellers/$', ListSellerView.as_view()),
     url(r'^seller/create/$', CreateSellerView.as_view()),
     url(r'^seller/(?P<pk>[0-9]+)/$', RetrieveUpdateSellerView.as_view()),
 
     url(r'^seller-items/$', ListSellerItemView.as_view()),
     url(r'^seller-item/create/$', CreateSellerItemView.as_view()),
-    url(r'^seller-item/(?P<pk>[0-9]+)/$', RetrieveUpdateSellerItemView.as_view()),
+    url(r'^seller-item/(?P<pk>[0-9]+)/$',
+        RetrieveUpdateSellerItemView.as_view()),
 
     url(r'^token/obtain/$', obtain_jwt_token),
     url(r'^token/refresh/$', refresh_jwt_token),
