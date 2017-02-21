@@ -54,7 +54,8 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=9000),
+    'JWT_VERIFY_EXPIRATION': False,
+    'JWT_ALLOW_REFRESH': True
 }
 
 MIDDLEWARE = [
