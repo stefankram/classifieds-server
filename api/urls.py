@@ -17,6 +17,7 @@ from api.views import CreateRatingView
 from api.views import CreateSellerItemView
 from api.views import CreateSellerView
 from api.views import CreateUserView
+from api.views import FindByNameItemView
 from api.views import ListAddressView
 from api.views import ListBillingView
 from api.views import ListBuyerView
@@ -65,6 +66,7 @@ urlpatterns = [
     url(r'^items/$', ListItemView.as_view()),
     url(r'^item/create/$', CreateItemView.as_view()),
     url(r'^item/(?P<pk>[0-9]+)/$', RetrieveUpdateItemView.as_view()),
+    url(r'^item/find/(?P<name>[a-z]+)/$', FindByNameItemView.as_view()),
 
     url(r'^locations/$', ListLocationView.as_view()),
     url(r'^location/create/$', CreateLocationView.as_view()),

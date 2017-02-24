@@ -1,5 +1,6 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.generics import ListAPIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
@@ -24,3 +25,10 @@ class RetrieveUpdateItemView(RetrieveUpdateAPIView):
     authentication_classes = (JSONWebTokenAuthentication,)
     queryset = ItemModel.objects.all()
     serializer_class = ItemSerializer
+
+
+class FindByNameItemView(RetrieveAPIView):
+    authentication_classes = (JSONWebTokenAuthentication,)
+    queryset = ItemModel.objects.all()
+    serializer_class = ItemSerializer
+    lookup_field = 'name'

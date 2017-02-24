@@ -17,6 +17,7 @@ from .company import RetrieveUpdateCompanyView
 from .item import CreateItemView
 from .item import ListItemView
 from .item import RetrieveUpdateItemView
+from .item import FindByNameItemView
 
 from .location import CreateLocationView
 from .location import ListLocationView
