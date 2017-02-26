@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from api.models import BuyerModel
+from api.models import ItemModel
 from api.models import SearchModel
 
 
@@ -13,11 +15,13 @@ class SearchSerializer(serializers.ModelSerializer):
     """
     buyer_id = serializers.PrimaryKeyRelatedField(
         many=False,
-        read_only=True)
+        read_only=False,
+        queryset=BuyerModel.objects.all())
 
     item_id = serializers.PrimaryKeyRelatedField(
         many=False,
-        read_only=True)
+        read_only=False,
+        queryset=ItemModel.objects.all())
 
     class Meta:
         model = SearchModel

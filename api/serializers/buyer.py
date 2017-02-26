@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from api.models import AddressModel
@@ -23,6 +24,11 @@ class BuyerSerializer(serializers.ModelSerializer):
         read_only=False,
         queryset=BillingModel.objects.all())
 
+    user_id = serializers.PrimaryKeyRelatedField(
+        many=False,
+        read_only=False,
+        queryset=User.objects.all())
+
     class Meta:
         model = BuyerModel
         fields = [
@@ -30,5 +36,6 @@ class BuyerSerializer(serializers.ModelSerializer):
             'address_id',
             'billing_id',
             'phone',
-            'profile_pic'
+            'profile_pic',
+            'user_id'
         ]

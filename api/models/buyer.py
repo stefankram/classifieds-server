@@ -46,6 +46,7 @@ class BuyerModel(models.Model):
 
     profile_pic = models.URLField(
         db_column='profile_pic',
+        default=None,
         max_length=1024,
         null=True)
 

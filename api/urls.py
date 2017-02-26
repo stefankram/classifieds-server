@@ -17,6 +17,7 @@ from api.views import CreateRatingView
 from api.views import CreateSellerItemView
 from api.views import CreateSellerView
 from api.views import CreateUserView
+from api.views import FindAllByBuyerIdSearchView
 from api.views import FindByNameItemView
 from api.views import ListAddressView
 from api.views import ListBillingView
@@ -45,6 +46,8 @@ from api.views import RetrieveUpdateUserView
 from api.views import ListSearchView
 from api.views import CreateSearchView
 from api.views import RetrieveUpdateSearchView
+from api.views import FindByUsernameUserView
+from api.views import FindByUserIdBuyerView
 
 urlpatterns = [
     url(r'^addresses/$', ListAddressView.as_view()),
@@ -57,6 +60,7 @@ urlpatterns = [
 
     url(r'^buyers/$', ListBuyerView.as_view()),
     url(r'^buyer/create/$', CreateBuyerView.as_view()),
+    url(r'^buyer/find/(?P<user_id>[0-9]+)/$', FindByUserIdBuyerView.as_view()),
     url(r'^buyer/(?P<pk>[0-9]+)/$', RetrieveUpdateBuyerView.as_view()),
 
     url(r'^companies/$', ListCompanyView.as_view()),
@@ -84,8 +88,10 @@ urlpatterns = [
     url(r'^rating/create/$', CreateRatingView.as_view()),
     url(r'^rating/(?P<pk>[0-9]+)/$', RetrieveUpdateRatingView.as_view()),
 
-    url(r'^search/$', ListSearchView.as_view()),
+    url(r'^searches/$', ListSearchView.as_view()),
     url(r'^search/create/$', CreateSearchView.as_view()),
+    url(r'^search/find/all/(?P<buyer_id>[0-9]+)/$',
+        FindAllByBuyerIdSearchView.as_view()),
     url(r'^search/(?P<pk>[0-9]+)/$', RetrieveUpdateSearchView.as_view()),
 
     url(r'^sellers/$', ListSellerView.as_view()),
@@ -103,7 +109,9 @@ urlpatterns = [
 
     url(r'^users/$', ListUserView.as_view()),
     url(r'^user/create/$', CreateUserView.as_view()),
-    url(r'^user/(?P<pk>[0-9]+)/$', RetrieveUpdateUserView.as_view())
+    url(r'^user/find/(?P<username>.+)/$',
+        FindByUsernameUserView.as_view()),
+    url(r'^user/(?P<pk>[0-9]+)/$', RetrieveUpdateUserView.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -9,6 +9,7 @@ from .billing import RetrieveUpdateBillingView
 from .buyer import CreateBuyerView
 from .buyer import ListBuyerView
 from .buyer import RetrieveUpdateBuyerView
+from .buyer import FindByUserIdBuyerView
 
 from .company import CreateCompanyView
 from .company import ListCompanyView
@@ -38,6 +39,7 @@ from .rating import RetrieveUpdateRatingView
 from .search import CreateSearchView
 from .search import ListSearchView
 from .search import RetrieveUpdateSearchView
+from .search import FindAllByBuyerIdSearchView
 
 from .seller import CreateSellerView
 from .seller import ListSellerView
@@ -50,3 +52,4 @@ from .seller_item import RetrieveUpdateSellerItemView
 from .user import CreateUserView
 from .user import ListUserView
 from .user import RetrieveUpdateUserView
+from .user import FindByUsernameUserView

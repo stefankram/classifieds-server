@@ -51,7 +51,7 @@ class BillingModel(models.Model):
         validators=[MinLengthValidator(3)])
 
     card_expiry = models.DateField(
-        db_column='expiry')
+        db_column='card_expiry')
 
     def clean(self):
         if self.card_expiry < date.today():

@@ -20,6 +20,8 @@ class CompanyModel(models.Model):
         The address of the company
     billing_id: models.ForeignKey
         The billing info of the company
+    created_at: datetime
+        Creation date of the company account
     description: string
         The description of the company
     logo_pic: string
@@ -38,6 +40,11 @@ class CompanyModel(models.Model):
         db_column='billing_id',
         on_delete=models.PROTECT,
         to=BillingModel)
+        
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        db_column='created_at',
+        editable=False)
 
     description = models.TextField(
         db_column='description')
