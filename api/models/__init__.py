@@ -3,7 +3,6 @@ from .billing import BillingModel
 from .buyer import BuyerModel
 from .company import CompanyModel
 from .item import ItemModel
-from .location import LocationModel
 from .message import MessageModel
 from .order import OrderModel
 from .rating import RatingModel

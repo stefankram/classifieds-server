@@ -3,6 +3,7 @@ from django.db import models
 
 from .seller import SellerModel
 from .buyer import BuyerModel
+from .search import SearchModel
 
 
 class MessageModel(models.Model):
@@ -28,6 +29,8 @@ class MessageModel(models.Model):
         The message text
     recipient: string
         Who will receive the message
+    search_id: models.ForeignKey
+        The search this message belongs to
     seller_id: models.ForeignKey
         The seller
     """
@@ -47,14 +50,18 @@ class MessageModel(models.Model):
         editable=False)
 
     message = models.TextField(
-        db_column='message',
-        editable=False)
+        db_column='message')
 
     recipient = models.CharField(
         choices=RECIPIENTS,
         db_column='recipient',
         max_length=2,
         validators=[MinLengthValidator(2)])
+
+    search_id = models.ForeignKey(
+        db_column='search_id',
+        on_delete=models.CASCADE,
+        to=SearchModel)
 
     seller_id = models.ForeignKey(
         db_column='seller_id',

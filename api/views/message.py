@@ -24,3 +24,11 @@ class RetrieveUpdateMessageView(RetrieveUpdateAPIView):
     permission_classes = (IsAuthenticated,)
     queryset = MessageModel.objects.all()
     serializer_class = MessageSerializer
+
+
+class FindAllBySearchIdMessageView(ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = MessageSerializer
+
+    def get_queryset(self):
+        return MessageModel.objects.filter(search_id=self.kwargs['search_id'])

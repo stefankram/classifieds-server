@@ -1,6 +1,7 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.generics import ListAPIView
 from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from api.models import SellerModel
@@ -21,6 +22,13 @@ class ListSellerView(ListAPIView):
 
 
 class RetrieveUpdateSellerView(RetrieveUpdateAPIView):
+    permission_classes = (IsAuthenticated,)
+    queryset = SellerModel.objects.all()
+    serializer_class = SellerSerializer
+
+
+class FindByUserIdSellerView(RetrieveAPIView):
+    lookup_field = 'user_id'
     permission_classes = (IsAuthenticated,)
     queryset = SellerModel.objects.all()
     serializer_class = SellerSerializer

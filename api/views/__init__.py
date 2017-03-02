@@ -20,13 +20,10 @@ from .item import ListItemView
 from .item import RetrieveUpdateItemView
 from .item import FindByNameItemView
 
-from .location import CreateLocationView
-from .location import ListLocationView
-from .location import RetrieveUpdateLocationView
-
 from .message import CreateMessageView
 from .message import ListMessageView
 from .message import RetrieveUpdateMessageView
+from .message import FindAllBySearchIdMessageView
 
 from .order import CreateOrderView
 from .order import ListOrderView
@@ -40,10 +37,12 @@ from .search import CreateSearchView
 from .search import ListSearchView
 from .search import RetrieveUpdateSearchView
 from .search import FindAllByBuyerIdSearchView
+from .search import FindAllByItemIdSearchView
 
 from .seller import CreateSellerView
 from .seller import ListSellerView
 from .seller import RetrieveUpdateSellerView
+from .search import FindAllByBuyerIdSearchView
 
 from .seller_item import CreateSellerItemView
 from .seller_item import ListSellerItemView

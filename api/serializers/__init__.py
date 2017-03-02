@@ -3,7 +3,6 @@ from .billing import BillingSerializer
 from .buyer import BuyerSerializer
 from .company import CompanySerializer
 from .item import ItemSerializer
-from .location import LocationSerializer
 from .message import MessageSerializer
 from .order import OrderSerializer
 from .rating import RatingSerializer

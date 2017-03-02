@@ -30,5 +30,8 @@ class SearchSerializer(serializers.ModelSerializer):
             'buyer_id',
             'created_at',
             'description',
-            'item_id'
+            'item_id',
+            'latitude',
+            'longitude',
+            'radius'
         ]

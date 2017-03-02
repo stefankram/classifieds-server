@@ -10,7 +10,6 @@ from api.views import CreateBillingView
 from api.views import CreateBuyerView
 from api.views import CreateCompanyView
 from api.views import CreateItemView
-from api.views import CreateLocationView
 from api.views import CreateMessageView
 from api.views import CreateOrderView
 from api.views import CreateRatingView
@@ -18,13 +17,14 @@ from api.views import CreateSellerItemView
 from api.views import CreateSellerView
 from api.views import CreateUserView
 from api.views import FindAllByBuyerIdSearchView
+from api.views import FindAllByItemIdSearchView
+from api.views import FindAllBySearchIdMessageView
 from api.views import FindByNameItemView
 from api.views import ListAddressView
 from api.views import ListBillingView
 from api.views import ListBuyerView
 from api.views import ListCompanyView
 from api.views import ListItemView
-from api.views import ListLocationView
 from api.views import ListMessageView
 from api.views import ListOrderView
 from api.views import ListRatingView
@@ -36,7 +36,6 @@ from api.views import RetrieveUpdateBillingView
 from api.views import RetrieveUpdateBuyerView
 from api.views import RetrieveUpdateCompanyView
 from api.views import RetrieveUpdateItemView
-from api.views import RetrieveUpdateLocationView
 from api.views import RetrieveUpdateMessageView
 from api.views import RetrieveUpdateOrderView
 from api.views import RetrieveUpdateRatingView
@@ -48,6 +47,7 @@ from api.views import CreateSearchView
 from api.views import RetrieveUpdateSearchView
 from api.views import FindByUsernameUserView
 from api.views import FindByUserIdBuyerView
+from api.views.seller import FindByUserIdSellerView
 
 urlpatterns = [
     url(r'^addresses/$', ListAddressView.as_view()),
@@ -72,12 +72,10 @@ urlpatterns = [
     url(r'^item/(?P<pk>[0-9]+)/$', RetrieveUpdateItemView.as_view()),
     url(r'^item/find/(?P<name>[a-z]+)/$', FindByNameItemView.as_view()),
 
-    url(r'^locations/$', ListLocationView.as_view()),
-    url(r'^location/create/$', CreateLocationView.as_view()),
-    url(r'^location/(?P<pk>[0-9]+)/$', RetrieveUpdateLocationView.as_view()),
-
     url(r'^messages/$', ListMessageView.as_view()),
     url(r'^message/create/$', CreateMessageView.as_view()),
+    url(r'^message/find/all/(?P<search_id>[0-9]+)/$',
+        FindAllBySearchIdMessageView.as_view()),
     url(r'^message/(?P<pk>[0-9]+)/$', RetrieveUpdateMessageView.as_view()),
 
     url(r'^orders/$', ListOrderView.as_view()),
@@ -90,12 +88,16 @@ urlpatterns = [
 
     url(r'^searches/$', ListSearchView.as_view()),
     url(r'^search/create/$', CreateSearchView.as_view()),
+    url(r'^search/find/all/item/(?P<item_id>[0-9]+)/$',
+        FindAllByItemIdSearchView.as_view()),
     url(r'^search/find/all/(?P<buyer_id>[0-9]+)/$',
         FindAllByBuyerIdSearchView.as_view()),
     url(r'^search/(?P<pk>[0-9]+)/$', RetrieveUpdateSearchView.as_view()),
 
     url(r'^sellers/$', ListSellerView.as_view()),
     url(r'^seller/create/$', CreateSellerView.as_view()),
+    url(r'^seller/find/(?P<user_id>[0-9]+)/$',
+        FindByUserIdSellerView.as_view()),
     url(r'^seller/(?P<pk>[0-9]+)/$', RetrieveUpdateSellerView.as_view()),
 
     url(r'^seller-items/$', ListSellerItemView.as_view()),

@@ -22,6 +22,12 @@ class SearchModel(models.Model):
         The description of the search
     item_id: models.ForeignKey
         The item they wish to purchase
+    latitude: double
+        The search latitude location
+    longitude: double
+        The search longitude location
+    radius: integer
+        How far the buyer is willing to go
     """
     buyer_id = models.ForeignKey(
         db_column='buyer_id',
@@ -40,3 +46,12 @@ class SearchModel(models.Model):
         db_column='item_id',
         on_delete=models.CASCADE,
         to=ItemModel)
+
+    latitude = models.FloatField(
+        db_column='latitude')
+
+    longitude = models.FloatField(
+        db_column='longitude')
+
+    radius = models.IntegerField(
+        db_column='radius')

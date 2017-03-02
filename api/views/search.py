@@ -32,3 +32,11 @@ class FindAllByBuyerIdSearchView(ListAPIView):
 
     def get_queryset(self):
         return SearchModel.objects.filter(buyer_id=self.kwargs['buyer_id'])
+
+
+class FindAllByItemIdSearchView(ListAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = SearchSerializer
+
+    def get_queryset(self):
+        return SearchModel.objects.filter(item_id=self.kwargs['item_id'])
